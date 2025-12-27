@@ -1,0 +1,776 @@
+<div class="rk-wrap" id="rkWrap">
+  <div class="rk-header">
+    <h2 class="rk-title">🚦 Probezeit • ASF • FES • Punkte-System</h2>
+
+    <div class="rk-toast" id="rkToast" aria-hidden="true">
+      <div class="rk-toast-inner">
+        <div class="rk-toast-emoji">⛔</div>
+        <div>
+          <div class="rk-toast-title">Endstation</div>
+          <div class="rk-toast-sub">8 Punkte → Führerscheinentzug</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Mini-Info (leer, Bubble erscheint bei Skala-Klick) -->
+  <div class="rk-lead rk-lead-mini">
+    <div class="rk-mini-pop" id="rkMiniPop" hidden>
+      <span class="rk-mini-dot" id="rkMiniDot"></span>
+      <div class="rk-mini-pop-inner">
+        <div class="rk-mini-pop-title" id="rkMiniPopTitle">Info</div>
+        <div class="rk-mini-pop-text" id="rkMiniPopText"></div>
+      </div>
+      <button class="rk-mini-close" id="rkMiniClose" type="button" aria-label="Schließen">×</button>
+    </div>
+  </div>
+
+  <div class="rk-stage">
+    <div class="rk-track safe" id="rkTrack" aria-hidden="true">
+      <div class="rk-track-glass"></div>
+      <div class="rk-track-flow"></div>
+
+      <div class="rk-progress" id="rkProgress">
+        <div class="rk-progress-midline"></div>
+      </div>
+
+      <div class="rk-stops" id="rkStops"></div>
+      <div class="rk-cams" id="rkCams" aria-hidden="true"></div>
+
+      <div class="rk-car" id="rkCar">
+        <img class="rk-car-img"
+          src="https://image.jimcdn.com/app/cms/image/transf/dimension=320x10000:format=png/path/s91fafdaaa718653a/image/i99a8610ca2f7d674/version/1766667693/image.png"
+          alt="">
+      </div>
+    </div>
+
+    <!-- ✅ Punkte-Skala 0–8 -->
+    <div class="rk-scale">
+      <div class="rk-scale-bar" id="rkScaleBar">
+        <div class="rk-seg rk-seg-0" data-key="0">0</div>
+        <div class="rk-seg rk-seg-1-3" data-key="1-3">1–3</div>
+        <div class="rk-seg rk-seg-4-5" data-key="4-5">4–5</div>
+        <div class="rk-seg rk-seg-6-7" data-key="6-7">6–7</div>
+        <div class="rk-seg rk-seg-8" data-key="8">8</div>
+
+        <div class="rk-scale-marker" id="rkScaleMarker"></div>
+      </div>
+
+      <div class="rk-scale-ticks">
+        <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span>
+        <span>5</span><span>6</span><span>7</span><span>8</span>
+      </div>
+    </div>
+
+    <!-- ✅ Steps: oben nur Teaser -->
+    <div class="rk-points" id="rkPoints">
+      <button class="rk-point active" data-index="0" data-wiki="probezeit"
+        data-title="🟦 Probezeit"
+        data-teaser="In der Probezeit können Verstöße schneller Folgen haben. Die Details findest du unten bei den Infos.">
+        <span>Probezeit</span>
+      </button>
+
+      <button class="rk-point" data-index="1" data-wiki="asf"
+        data-title="🧩 Aufbauseminar für Fahranfänger (ASF)"
+        data-teaser="Behördlich angeordnetes Seminar in der Probezeit. Details unten.">
+        <span>ASF</span>
+      </button>
+
+      <button class="rk-point" data-index="2" data-wiki="fes"
+        data-title="🛟 Fahreignungsseminar (FES)"
+        data-teaser="Freiwilliges Seminar rund um Punkte, Fahrverhalten & Prävention. Details findest du unten bei den Infos.">
+        <span>FES</span>
+      </button>
+
+      <button class="rk-point" data-index="3" data-wiki="entzug"
+        data-title="⛔ Entzug der Fahrerlaubnis (8 Punkte)"
+        data-teaser="Bei 8 Punkten wird die Fahrerlaubnis entzogen. Was das bedeutet und was du vorher tun kannst: unten.">
+        <span>8 Punkte</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ✅ Info Box: nur Teaser -->
+  <div class="rk-info" id="rkInfoBox">
+    <div class="rk-info-title" id="rkInfoTitle">🟦 Probezeit</div>
+
+    <div class="rk-alert" id="rkAlert" aria-live="polite" style="display:none;">
+      <div class="rk-alert-title" id="rkAlertTitle">⚠️ Hinweis</div>
+      <div class="rk-alert-text" id="rkAlertText"></div>
+    </div>
+
+    <div class="rk-info-teaser" id="rkInfoTeaser"></div>
+  </div>
+
+  <!-- ✅ Wiki: hier steht die volle Info -->
+  <div class="rk-wiki" id="rkWiki">
+    <div class="rk-wiki-head">
+      <div class="rk-wiki-title">📚 Alles zu Probezeit, ASF & FES</div>
+      <div class="rk-wiki-sub">Hier findest du die ausführlichen Infos – Schritt für Schritt.</div>
+    </div>
+
+    <div class="rk-acc rk-reveal open" id="wiki-probezeit" data-step="0">
+      <button class="rk-acc-btn" type="button">
+        <span class="rk-acc-left">
+          <span class="rk-acc-badge">🟦</span>
+          <span class="rk-acc-title">Probezeit</span>
+        </span>
+        <span class="rk-acc-right">
+          <span class="rk-acc-status"></span>
+          <span class="rk-acc-ico">–</span>
+        </span>
+      </button>
+      <div class="rk-acc-panel">
+        <hr>
+        <ul>
+          <li>Probezeit: <b>2 Jahre</b> ab Führerscheinerhalt.</li>
+          <li>Bei bestimmten Verstößen können Maßnahmen schneller greifen als später.</li>
+          <li>Bei ASF-Anordnung verlängert sich die Probezeit um <b>2 Jahre</b> → insgesamt <b>4 Jahre</b>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rk-acc rk-reveal" id="wiki-asf" data-step="1">
+      <button class="rk-acc-btn" type="button">
+        <span class="rk-acc-left">
+          <span class="rk-acc-badge">🧩</span>
+          <span class="rk-acc-title">Aufbauseminar für Fahranfänger (ASF)</span>
+        </span>
+        <span class="rk-acc-right">
+          <span class="rk-acc-status"></span>
+          <span class="rk-acc-ico">+</span>
+        </span>
+      </button>
+      <div class="rk-acc-panel">
+        <hr>
+
+        <b>Was ist ASF?</b>
+        <ul>
+          <li><b>Behördlich angeordnetes</b> Aufbauseminar für Fahranfänger in der Probezeit.</li>
+          <li><b>Bundesweit gültig</b> – nicht an deinen Wohnort gebunden.</li>
+        </ul>
+
+        <b>Wichtig (Probezeit)</b>
+        <ul>
+          <li>Mit der Anordnung verlängert sich die Probezeit um <b>2 Jahre</b> → insgesamt <b>4 Jahre</b>.</li>
+        </ul>
+
+        <b>Ablauf</b>
+        <ul>
+          <li><b>4 Sitzungen</b> à 135 Minuten</li>
+          <li><b>1 Beobachtungsfahrt</b> (keine Prüfung, keine Fahrstunde)</li>
+          <li>Erfahrungsaustausch, Fahrstile vergleichen, gefährliche Situationen & Lösungen</li>
+        </ul>
+
+        <b>Dauer</b>
+        <ul>
+          <li>Mindestens <b>2 Wochen</b>, höchstens <b>4 Wochen</b></li>
+        </ul>
+
+        <div class="rk-note">
+          ⚠️ Teilnahme an allen Sitzungen ist verpflichtend.<br>
+          Bei verspätetem Erscheinen oder Fehlen muss die Teilnahme am gesamten Kurs leider beendet werden.
+        </div>
+
+        <div class="rk-links">
+          Mehr Infos: <a href="https://www.fahrschule-rakowski.eu/seminare/aufbauseminar-f%C3%BCr-fahranf%C3%A4nger-asf/" target="_blank" rel="noopener">ASF-Seite</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rk-acc rk-reveal" id="wiki-fes" data-step="2">
+      <button class="rk-acc-btn" type="button">
+        <span class="rk-acc-left">
+          <span class="rk-acc-badge">🛟</span>
+          <span class="rk-acc-title">Fahreignungsseminar (FES)</span>
+        </span>
+        <span class="rk-acc-right">
+          <span class="rk-acc-status"></span>
+          <span class="rk-acc-ico">+</span>
+        </span>
+      </button>
+      <div class="rk-acc-panel">
+        <hr>
+
+        <b>Was ist FES?</b>
+        <ul>
+          <li>Freiwilliges Seminar zum <b>Punkteabbau</b> im Fahreignungsregister (FAER).</li>
+          <li>Bundesweit gültig – Seminar kann auch bei uns durchgeführt werden.</li>
+        </ul>
+
+        <b>Punkteabbau-Regel</b>
+        <ul>
+          <li><b>1–5 Punkte:</b> 1 Punkt Abbau möglich (max. <b>1× in 5 Jahren</b>)</li>
+          <li><b>6–7 Punkte:</b> kein Punkteabbau mehr möglich</li>
+        </ul>
+
+        <b>Aufbau</b>
+        <ul>
+          <li><b>Verkehrspädagogisch:</b> 2 Module à 90 Minuten (Fahrlehrer)</li>
+          <li><b>Verkehrspsychologisch:</b> 2 Einzelsitzungen à 75 Minuten (Verkehrspsychologe)</li>
+        </ul>
+
+        <b>Mindestzeitraum</b>
+        <ul>
+          <li>Mindestens <b>22 Tage</b> (wegen der vorgeschriebenen Abstände)</li>
+        </ul>
+
+        <div class="rk-links">
+          Mehr Infos: <a href="https://www.fahrschule-rakowski.eu/seminare/fahreignungsseminar-zum-punkteabbau-fes/" target="_blank" rel="noopener">FES-Seite</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rk-acc rk-reveal" id="wiki-entzug" data-step="3">
+      <button class="rk-acc-btn" type="button">
+        <span class="rk-acc-left">
+          <span class="rk-acc-badge">⛔</span>
+          <span class="rk-acc-title">Entzug der Fahrerlaubnis (8 Punkte)</span>
+        </span>
+        <span class="rk-acc-right">
+          <span class="rk-acc-status"></span>
+          <span class="rk-acc-ico">+</span>
+        </span>
+      </button>
+      <div class="rk-acc-panel">
+        <hr>
+        <ul>
+          <li>Bei <b>8 Punkten</b> wird die Fahrerlaubnis <b>entzogen</b>.</li>
+          <li>Die Sperre beträgt in der Regel mindestens <b>6 Monate</b>.</li>
+          <li>Für die Wiedererteilung kann je nach Fall eine <b>MPU</b> erforderlich sein.</li>
+        </ul>
+
+        <div class="rk-note">
+          Tipp: Früh reagieren – bei 4–5 Punkten ist FES (Punkteabbau) noch möglich.
+        </div>
+      </div>
+    </div>
+
+    <div class="rk-wiki-footer">
+      <div class="rk-wiki-footer-left">
+        Noch Fragen? <a href="tel:+4962127220">0621-27220</a>
+      </div>
+      <div class="rk-wiki-footer-right">
+        <a href="https://www.fahrschule-rakowski.eu/faq-1/">FAQ</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="rk-screenflash" id="rkFlash" aria-hidden="true"></div>
+</div>
+
+<style>
+:root{--rk-orange:#ff8c00;--rk-blue:#1b75bc;}
+.rk-wrap{max-width:1000px;margin:0 auto;padding:42px 22px 14px;font-family:system-ui;}
+.rk-header{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:10px;}
+.rk-title{margin:0;line-height:1.15;}
+
+.rk-lead{margin:10px 0 14px;padding:14px 16px;border-radius:18px;background:linear-gradient(90deg, rgba(255,140,0,.10), rgba(27,117,188,.10));border:1px solid rgba(27,117,188,.18);box-shadow:0 12px 30px rgba(0,0,0,.08);position:relative;}
+.rk-lead-mini{margin:0 0 6px;padding:0;border:none;background:transparent;box-shadow:none;}
+
+.rk-mini-pop{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:999px;border:1px solid rgba(0,0,0,.10);
+  box-shadow:0 18px 55px rgba(0,0,0,.14);
+  background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(245,247,251,1));
+  opacity:0;transform:translateY(6px) scale(.98);
+  transition: opacity .16s ease, transform .16s ease;
+}
+.rk-mini-pop.show{opacity:1;transform:translateY(0) scale(1);animation: rkMiniPlop .22s cubic-bezier(.2,.9,.2,1) 1;}
+@keyframes rkMiniPlop{
+  0%{opacity:0;transform:translateY(10px) scale(.92);}
+  70%{opacity:1;transform:translateY(-1px) scale(1.02);}
+  100%{opacity:1;transform:translateY(0) scale(1);}
+}
+
+/* ✅ Vormerkung (1–3) Bubble höher, damit Auto nicht stört */
+.rk-mini-pop.c1.show{ transform: translateY(-12px) scale(1); }
+@media (max-width: 680px){
+  .rk-mini-pop.c1.show{ transform: translateY(-18px) scale(1); }
+}
+
+.rk-mini-dot{width:12px;height:12px;border-radius:999px;background:#64748b;box-shadow:0 0 0 6px rgba(148,163,184,.14);flex:0 0 12px;}
+.rk-mini-pop-inner{display:grid;gap:2px;min-width:0;}
+.rk-mini-pop-title{font-weight:950;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rk-mini-pop-text{font-weight:850;opacity:.9;font-size:.92rem;line-height:1.25;max-width:740px;}
+.rk-mini-close{margin-left:auto;width:28px;height:28px;border-radius:10px;border:1px solid rgba(0,0,0,.10);background:rgba(255,255,255,.6);font-weight:950;cursor:pointer;}
+.rk-mini-close:hover{background:rgba(255,255,255,.9);}
+.rk-mini-dot.c0{background:#16a34a; box-shadow:0 0 0 6px rgba(34,197,94,.14);}
+.rk-mini-dot.c1{background:#64748b; box-shadow:0 0 0 6px rgba(148,163,184,.14);}
+.rk-mini-dot.c2{background:#eab308; box-shadow:0 0 0 6px rgba(250,204,21,.14);}
+.rk-mini-dot.c3{background:#dc2626; box-shadow:0 0 0 6px rgba(239,68,68,.14);}
+.rk-mini-dot.c8{background:#0b0f19; box-shadow:0 0 0 6px rgba(15,23,42,.18);}
+
+.rk-toast{opacity:0;pointer-events:none;}
+.rk-toast.show{animation: rkToastIn .35s ease forwards, rkToastOut .55s ease forwards;animation-delay: 0s, 5.0s;}
+@keyframes rkToastIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)} }
+@keyframes rkToastOut{ from{opacity:1; transform:translateY(0)} to{opacity:0; transform:translateY(6px)} }
+.rk-toast-inner{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:16px;background:linear-gradient(135deg, rgba(255,140,0,.12), rgba(27,117,188,.12));border:1px solid rgba(27,117,188,.22);box-shadow:0 18px 55px rgba(0,0,0,.14);backdrop-filter: blur(10px);}
+.rk-toast-emoji{font-size:20px}
+.rk-toast-title{font-weight:950}
+.rk-toast-sub{opacity:.85;font-size:.92rem}
+
+.rk-stage{position:relative;padding-top:10px;}
+.rk-track{position:relative;height:18px;border-radius:999px;overflow:visible;margin:6px 0 10px;}
+.rk-track-glass{position:absolute;inset:0;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.30));border:1px solid rgba(27,117,188,.18);box-shadow:0 10px 30px rgba(0,0,0,.10);backdrop-filter: blur(10px);}
+.rk-track-flow{position:absolute;inset:0;border-radius:999px;background:linear-gradient(90deg, rgba(255,140,0,.10), rgba(27,117,188,.10), rgba(255,140,0,.10));background-size:200% 100%;animation: rkFlow 9.5s linear infinite;opacity:.85;}
+@keyframes rkFlow{ from{background-position:0% 0%} to{background-position:200% 0%} }
+.rk-progress{position:absolute;left:0;top:0;height:100%;width:0%;border-radius:999px;overflow:hidden;transition:width 1.05s cubic-bezier(.2,.8,.2,1);}
+.rk-progress-midline{position:absolute;left:10px;right:10px;top:50%;height:2px;transform:translateY(-50%);border-radius:999px;background:rgba(255,255,255,.55);opacity:.52;}
+.rk-track.safe .rk-progress{background:linear-gradient(90deg,#22c55e,#16a34a);}
+.rk-track.warn .rk-progress{background:linear-gradient(90deg,#facc15,#eab308);}
+.rk-track.danger .rk-progress{background:linear-gradient(90deg,#ef4444,#b91c1c);}
+
+.rk-stops{position:absolute;inset:0;z-index:5;pointer-events:auto;}
+.rk-stop{position:absolute;top:50%;transform:translate(-50%,-56%);width:28px;height:28px;border-radius:10px;display:grid;place-items:center;font-size:15px;background:rgba(255,255,255,.78);border:1px solid rgba(0,0,0,.10);box-shadow:0 10px 25px rgba(0,0,0,.10);backdrop-filter: blur(6px);opacity:.62;cursor:pointer;user-select:none;transition:opacity .18s ease, transform .18s ease, box-shadow .22s ease;}
+.rk-stop:hover{opacity:.96;transform:translate(-50%,-60%) scale(1.06);box-shadow:0 14px 32px rgba(0,0,0,.14);}
+.rk-stop.done{opacity:.92;}
+.rk-stop.active{opacity:1;transform:translate(-50%,-62%) scale(1.10);}
+
+.rk-cams{position:absolute;inset:0;z-index:5;pointer-events:none;}
+.rk-cam{position:absolute;top:50%;transform:translate(-50%,-56%);width:28px;height:28px;border-radius:10px;display:grid;place-items:center;font-size:15px;background:rgba(255,255,255,.78);border:1px solid rgba(0,0,0,.10);box-shadow:0 10px 25px rgba(0,0,0,.10);backdrop-filter: blur(6px);opacity:.40;}
+.rk-cam.done{opacity:.90;box-shadow:0 14px 30px rgba(255,0,0,.16), 0 10px 25px rgba(0,0,0,.10);border-color: rgba(255,0,0,.18);}
+.rk-cam.flash{opacity:.98;animation: rkCamPop .28s ease-in-out 1;}
+@keyframes rkCamPop{0%{transform:translate(-50%,-56%) scale(1);}45%{transform:translate(-50%,-60%) scale(1.08);}100%{transform:translate(-50%,-56%) scale(1);}}
+.rk-cam.flash::after{content:"";position:absolute; inset:-14px; border-radius:14px;background: radial-gradient(circle, rgba(255,0,0,.85) 0%, rgba(255,0,0,.45) 35%, rgba(255,0,0,0) 65%);animation: rkRedFlash .28s ease-out;}
+@keyframes rkRedFlash{0%{opacity:1;transform:scale(.6);}100%{opacity:0;transform:scale(1.45);}}
+
+.rk-screenflash{position:fixed; inset:0;background:rgba(255,0,0,.12);opacity:0; pointer-events:none; z-index:9999;}
+.rk-screenflash.on{animation: rkScreenFlash .35s ease-out 1;}
+@keyframes rkScreenFlash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
+
+.rk-car{position:absolute;top:50%;left:0%;transform:translate(-50%,-78%);transition:left 1.05s cubic-bezier(.2,.8,.2,1);z-index:999;pointer-events:none;}
+.rk-car-img{height:126px;width:auto;display:block;filter:drop-shadow(0 22px 34px rgba(0,0,0,.25));}
+
+/* ✅ Schreck-Wackler beim Blitzer */
+.rk-car.wobble{ animation: rkWobble .28s ease-in-out 1; }
+@keyframes rkWobble{
+  0%{transform:translate(-50%,-78%) rotate(0deg) scale(1);}
+  25%{transform:translate(-50%,-78%) rotate(-2.2deg) scale(1.01);}
+  55%{transform:translate(-50%,-78%) rotate(2.6deg) scale(1.01);}
+  80%{transform:translate(-50%,-78%) rotate(-1.2deg) scale(1.00);}
+  100%{transform:translate(-50%,-78%) rotate(0deg) scale(1);}
+}
+
+/* Skala */
+.rk-scale{margin-top:10px;}
+.rk-scale-bar{position:relative;height:34px;border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,.08);background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(245,247,251,1));box-shadow:0 12px 26px rgba(0,0,0,.08);display:flex;}
+.rk-seg{display:flex;align-items:center;justify-content:center;font-weight:950;font-size:.86rem;opacity:.95;text-shadow:0 1px 0 rgba(255,255,255,.65);border-right:1px solid rgba(15,23,42,.10);cursor:pointer; user-select:none;}
+.rk-seg:last-child{border-right:none;}
+.rk-seg-0{width:11.111%; background:linear-gradient(90deg, rgba(34,197,94,.30), rgba(34,197,94,.18));}
+.rk-seg-1-3{width:33.333%; background:linear-gradient(90deg, rgba(148,163,184,.30), rgba(148,163,184,.18));}
+.rk-seg-4-5{width:22.222%; background:linear-gradient(90deg, rgba(250,204,21,.30), rgba(250,204,21,.16));}
+.rk-seg-6-7{width:22.222%; background:linear-gradient(90deg, rgba(239,68,68,.28), rgba(239,68,68,.14));}
+.rk-seg-8{width:11.111%; background:linear-gradient(90deg, rgba(15,23,42,.55), rgba(15,23,42,.35)); color:#fff; text-shadow:none;}
+.rk-scale-ticks{margin-top:6px;display:grid;grid-template-columns:repeat(9,1fr);font-weight:900;opacity:.85;font-size:.86rem;}
+.rk-scale-ticks span{text-align:center;}
+.rk-scale-marker{position:absolute;top:50%;left:0%;width:13px;height:13px;transform:translate(-50%,-50%);border-radius:999px;background:#0f172a;border:2px solid rgba(255,255,255,.88);box-shadow:0 10px 22px rgba(0,0,0,.18);transition:left 1.05s cubic-bezier(.2,.8,.2,1), background .25s ease, box-shadow .25s ease;}
+.rk-scale-marker.m0{background:#16a34a; box-shadow:0 0 0 6px rgba(34,197,94,.14), 0 10px 22px rgba(0,0,0,.18);}
+.rk-scale-marker.m1{background:#64748b; box-shadow:0 0 0 6px rgba(148,163,184,.14), 0 10px 22px rgba(0,0,0,.18);}
+.rk-scale-marker.m2{background:#eab308; box-shadow:0 0 0 6px rgba(250,204,21,.14), 0 10px 22px rgba(0,0,0,.18);}
+.rk-scale-marker.m3{background:#dc2626; box-shadow:0 0 0 6px rgba(239,68,68,.14), 0 10px 22px rgba(0,0,0,.18);}
+.rk-scale-marker.m8{background:#0b0f19; box-shadow:0 0 0 6px rgba(15,23,42,.18), 0 10px 22px rgba(0,0,0,.22);}
+
+/* Info Box */
+.rk-info{margin-top:14px;padding:18px 18px 16px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,.86), rgba(245,247,251,1));border:1px solid rgba(27,117,188,.14);box-shadow:0 16px 40px rgba(0,0,0,.10);position:relative;overflow:hidden;}
+.rk-info::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg, var(--rk-orange), var(--rk-blue));opacity:.9;}
+.rk-info-title{font-weight:950;font-size:1.06rem;margin:0 0 10px;padding-left:10px;}
+.rk-info-teaser{padding-left:10px;font-weight:850;opacity:.92;line-height:1.45;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:12px 12px;}
+.rk-alert{margin:10px 10px 12px;padding:12px 12px;border-radius:16px;background:linear-gradient(90deg, rgba(250,204,21,.14), rgba(239,68,68,.10));border:1px solid rgba(239,68,68,.14);box-shadow:0 12px 26px rgba(0,0,0,.08);}
+.rk-alert-title{font-weight:950;margin-bottom:4px;}
+.rk-alert-text{font-weight:800;opacity:.92;line-height:1.35}
+
+/* Links Box */
+.rk-links{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);font-weight:900;}
+.rk-links a{color:#0f172a;text-decoration:none;font-weight:950;}
+.rk-links a:hover{text-decoration:underline;}
+
+/* Points */
+.rk-points{display:flex;justify-content:space-between;gap:10px;overflow-x:auto;padding:10px 0 6px;}
+.rk-point{position:relative;border:2px solid #ddd;background:#fff;border-radius:20px;padding:10px 14px;font-weight:900;cursor:pointer;white-space:nowrap;flex:0 0 auto;overflow:hidden;transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
+.rk-point:hover{transform: translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.10);}
+.rk-point span{position:relative;z-index:2;}
+.rk-point::before{content:"";position:absolute;inset:0;width:0%;background:linear-gradient(90deg, rgba(255,140,0,.20), rgba(27,117,188,.20));z-index:1;transition:width .6s cubic-bezier(.2,.8,.2,1);}
+.rk-point.done::before{width:100%;}
+.rk-point.active::before{width:100%;background:linear-gradient(90deg, rgba(255,140,0,.28), rgba(27,117,188,.28));}
+.rk-point.active{border-color:rgba(27,117,188,.75);}
+.rk-point.done{border-color:rgba(27,117,188,.35);}
+
+/* Wiki */
+.rk-wiki{margin-top:14px;border-radius:18px;border:1px solid rgba(27,117,188,.14);background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(245,247,251,1));box-shadow:0 16px 40px rgba(0,0,0,.08);overflow:hidden;}
+.rk-wiki-head{padding:16px 16px 10px;border-bottom:1px solid rgba(0,0,0,.06);}
+.rk-wiki-title{font-weight:950;}
+.rk-wiki-sub{opacity:.85;margin-top:4px;line-height:1.35;}
+.rk-acc{border-top:1px solid rgba(0,0,0,.06);position:relative;}
+.rk-acc:first-of-type{border-top:none;}
+.rk-acc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg, rgba(255,140,0,.85), rgba(27,117,188,.85));opacity:.55;}
+.rk-acc.open::before{opacity:.95;}
+.rk-acc-btn{width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:transparent;border:none;cursor:pointer;font-weight:950;font-size:1rem;}
+.rk-acc-left{display:flex;align-items:center;gap:10px;}
+.rk-acc-badge{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg, rgba(255,140,0,.14), rgba(27,117,188,.12));border:1px solid rgba(0,0,0,.06);box-shadow:0 10px 22px rgba(0,0,0,.08);}
+.rk-acc-right{display:flex;align-items:center;gap:10px;}
+.rk-acc-status{min-width:34px;height:26px;padding:0 10px;border-radius:999px;display:grid;place-items:center;font-weight:950;font-size:.88rem;background:rgba(27,117,188,.08);border:1px solid rgba(27,117,188,.14);}
+.rk-acc-ico{width:30px;height:30px;display:grid;place-items:center;border-radius:12px;background:rgba(27,117,188,.10);border:1px solid rgba(27,117,188,.14);font-weight:950;}
+.rk-acc-panel{display:none;padding:0 16px 16px;line-height:1.45;opacity:.92;}
+.rk-acc.open .rk-acc-panel{display:block;}
+.rk-note{margin-top:10px;padding:10px 12px;border-radius:14px;background:linear-gradient(90deg, rgba(255,140,0,.10), rgba(27,117,188,.08));border:1px solid rgba(27,117,188,.12);font-weight:800;}
+.rk-reveal{opacity:0;transform:translateY(8px);max-height:0;overflow:hidden;transition: opacity .35s ease, transform .35s ease, max-height .55s ease;}
+.rk-reveal.show{opacity:1;transform:translateY(0);max-height:2600px;}
+.rk-wiki-footer{padding:12px 16px;border-top:1px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:900;}
+.rk-wiki-footer a{color:#0f172a;text-decoration:none;}
+.rk-wiki-footer a:hover{text-decoration:underline;}
+</style>
+
+<script>
+window.addEventListener('load', function () {
+  var points = Array.prototype.slice.call(document.querySelectorAll('.rk-point'));
+  var progress = document.getElementById('rkProgress');
+  var car = document.getElementById('rkCar');
+  var stopsWrap = document.getElementById('rkStops');
+  var camsWrap = document.getElementById('rkCams');
+  var toast = document.getElementById('rkToast');
+  var flash = document.getElementById('rkFlash');
+  var track = document.getElementById('rkTrack');
+  var scaleMarker = document.getElementById('rkScaleMarker');
+
+  var miniPop = document.getElementById('rkMiniPop');
+  var miniDot = document.getElementById('rkMiniDot');
+  var miniTitle = document.getElementById('rkMiniPopTitle');
+  var miniText = document.getElementById('rkMiniPopText');
+  var miniClose = document.getElementById('rkMiniClose');
+
+  var infoTitle = document.getElementById('rkInfoTitle');
+  var infoTeaser = document.getElementById('rkInfoTeaser');
+  var pointsWrap = document.getElementById('rkPoints');
+
+  var alertBox = document.getElementById('rkAlert');
+  var alertTitle = document.getElementById('rkAlertTitle');
+  var alertText = document.getElementById('rkAlertText');
+
+  var accs = Array.prototype.slice.call(document.querySelectorAll('.rk-acc'));
+  var revealAccs = Array.prototype.slice.call(document.querySelectorAll('.rk-reveal'));
+  var scaleSegs = Array.prototype.slice.call(document.querySelectorAll('#rkScaleBar .rk-seg'));
+
+  var popData = {
+    "0":   { title:"🟢 0 Punkte", text:"Keine Maßnahmen – alles im grünen Bereich.", cls:"c0" },
+    "1-3": { title:"◻️ 1–3 Punkte – Vormerkung", text:"Keine direkten Maßnahmen – der Punktestand wird erfasst.", cls:"c1" },
+    "4-5": { title:"🟡 4–5 Punkte – Ermahnung", text:"Schriftliche, kostenpflichtige Ermahnung. Hinweis: FES möglich (1 Punkt Abbau).", cls:"c2" },
+    "6-7": { title:"🔴 6–7 Punkte – Verwarnung", text:"Kostenpflichtige Verwarnung. Hinweis auf FES – aber kein Punkteabbau mehr möglich.", cls:"c3" },
+    "8":   { title:"⚫ 8 Punkte – Entzug", text:"Fahrerlaubnisentzug (mind. 6 Monate). Rückerhalt oft nur mit MPU.", cls:"c8" }
+  };
+
+  var total = points.length;
+  var lastIndex = total - 1;
+  var currentIndex = 0;
+  var lastPct = 0;
+
+  var miniTimer = null;
+
+  function showMini(key){
+    var d = popData[key];
+    if(!d || !miniPop) return;
+
+    miniTitle.textContent = d.title;
+    miniText.textContent = d.text;
+
+    // ✅ Klasse für Positionierung (c1 = Vormerkung höher)
+    miniPop.classList.remove('c0','c1','c2','c3','c8');
+    miniPop.classList.add(d.cls);
+
+    miniDot.classList.remove('c0','c1','c2','c3','c8');
+    miniDot.classList.add(d.cls);
+
+    miniPop.hidden = false;
+    miniPop.classList.remove('show');
+    void miniPop.offsetWidth;
+    miniPop.classList.add('show');
+
+    if(miniTimer) clearTimeout(miniTimer);
+    miniTimer = setTimeout(hideMini, 3600);
+  }
+
+  function hideMini(){
+    if(!miniPop) return;
+    miniPop.classList.remove('show');
+    setTimeout(function(){ miniPop.hidden = true; }, 160);
+  }
+
+  if(miniClose){
+    miniClose.addEventListener('click', function(e){
+      e.stopPropagation();
+      hideMini();
+    });
+  }
+
+  function buildStops(){
+    stopsWrap.innerHTML = "";
+    for(var i=0;i<total;i++){
+      var s = document.createElement('div');
+      s.className = "rk-stop" + (i===0 ? " active" : "");
+      s.style.left = (i/(total-1))*100 + "%";
+      s.textContent = "🛑";
+      (function(index){
+        s.addEventListener('click', function(){ setActive(index, true); });
+      })(i);
+      stopsWrap.appendChild(s);
+    }
+  }
+
+  function buildCams(){
+    camsWrap.innerHTML = "";
+    for(var i=0;i<total-1;i++){
+      var c = document.createElement('div');
+      c.className = "rk-cam";
+      c.setAttribute('data-mid', String(i));
+      c.style.left = (((i + 0.5) / (total - 1)) * 100) + "%";
+      c.textContent = "📸";
+      camsWrap.appendChild(c);
+    }
+  }
+
+  function setCamDoneUpTo(idx){
+    var cams = Array.prototype.slice.call(camsWrap.querySelectorAll('.rk-cam'));
+    cams.forEach(function(cam){
+      var i = Number(cam.getAttribute('data-mid') || "0");
+      cam.classList.toggle('done', (i + 1) <= idx);
+      if(idx < (i + 1)) cam.classList.remove('flash');
+    });
+  }
+
+  function wobbleCar(){
+    if(!car) return;
+    car.classList.remove('wobble');
+    void car.offsetWidth;
+    car.classList.add('wobble');
+    setTimeout(function(){ car.classList.remove('wobble'); }, 320);
+  }
+
+  function flashCam(seg){
+    var el = camsWrap.querySelector('.rk-cam[data-mid="' + seg + '"]');
+    if(el){
+      el.classList.remove('flash');
+      void el.offsetWidth;
+      el.classList.add('flash');
+      el.classList.add('done');
+    }
+    if(flash){
+      flash.classList.remove('on');
+      void flash.offsetWidth;
+      flash.classList.add('on');
+    }
+    wobbleCar(); // ✅ Schreck-Wackler
+  }
+
+  function updateStops(idx){
+    var stops = Array.prototype.slice.call(stopsWrap.querySelectorAll('.rk-stop'));
+    stops.forEach(function(s,i){
+      s.classList.toggle("active", i===idx);
+      s.classList.toggle("done", i<idx);
+    });
+  }
+
+  function markButtons(idx){
+    points.forEach(function(p,i){
+      p.classList.toggle("active", i===idx);
+      p.classList.toggle("done", i<idx);
+    });
+  }
+
+  function setPct(idx){
+    var pct = (idx/(total-1));
+    var percent = (pct*100) + "%";
+    progress.style.width = percent;
+    car.style.left = percent;
+
+    if(pct > lastPct + 0.0001){
+      car.style.transform = "translate(-50%,-78%) scale(1.01)";
+      setTimeout(function(){ car.style.transform = "translate(-50%,-78%) scale(1)"; }, 180);
+    }
+    lastPct = pct;
+
+    if(scaleMarker){
+      var map = [0, 3, 5, 8];
+      var p = (map[idx] != null) ? map[idx] : 0;
+
+      scaleMarker.style.left = (p/8*100) + "%";
+      scaleMarker.classList.remove('m0','m1','m2','m3','m8');
+
+      if(p === 0) scaleMarker.classList.add('m0');
+      else if(p >= 1 && p <= 3) scaleMarker.classList.add('m1');
+      else if(p >= 4 && p <= 5) scaleMarker.classList.add('m2');
+      else if(p >= 6 && p <= 7) scaleMarker.classList.add('m3');
+      else scaleMarker.classList.add('m8');
+    }
+  }
+
+  function setInfo(idx){
+    var el = points[idx];
+    if(infoTitle) infoTitle.textContent = el.getAttribute('data-title') || "";
+    var teaser = (el.getAttribute('data-teaser') || "").trim();
+    if(infoTeaser) infoTeaser.textContent = teaser || "Scroll nach unten – dort findest du die Details.";
+  }
+
+  function revealWikiUpTo(idx){
+    revealAccs.forEach(function(acc){
+      var step = Number(acc.getAttribute('data-step') || "0");
+      acc.classList.toggle('show', step <= idx);
+    });
+  }
+
+  function updateWikiStatus(idx){
+    accs.forEach(function(acc){
+      var step = Number(acc.getAttribute('data-step') || "0");
+      var status = acc.querySelector('.rk-acc-status');
+
+      acc.classList.remove('done','current');
+
+      if(step < idx){
+        acc.classList.add('done');
+        if(status) status.textContent = "✅";
+      } else if(step === idx){
+        acc.classList.add('current');
+        if(status) status.textContent = "●";
+      } else {
+        if(status) status.textContent = "";
+      }
+    });
+  }
+
+  function openCurrentWiki(idx){
+    var key = points[idx].getAttribute('data-wiki');
+    var targetId = "wiki-" + key;
+    accs.forEach(function(acc){
+      var ico = acc.querySelector('.rk-acc-ico');
+      var shouldOpen = (acc.id === targetId);
+      acc.classList.toggle('open', shouldOpen);
+      if(ico) ico.textContent = shouldOpen ? '–' : '+';
+    });
+  }
+
+  function showToast(){
+    if(!toast) return;
+    toast.classList.remove('show');
+    void toast.offsetWidth;
+    toast.classList.add('show');
+  }
+
+  function updateZone(idx){
+    if(!track) return;
+    track.classList.remove('safe','warn','danger');
+    if(idx === 0) track.classList.add('safe');
+    else if(idx === 1) track.classList.add('warn');
+    else track.classList.add('danger');
+  }
+
+  // ✅ Wichtig-Box: ASF & FES an gleicher Stelle / gleiche Optik
+  function updateBonusAlert(idx){
+    if(!alertBox) return;
+
+    // ASF (Step 1)
+    if(idx === 1){
+      alertBox.style.display = "block";
+      alertTitle.textContent = "⚠️ Wichtig (ASF)";
+      alertText.innerHTML =
+        'Teilnahme an allen Sitzungen ist <b>verpflichtend</b>.<br>' +
+        'Bei verspätetem Erscheinen oder Fehlen muss die Teilnahme am gesamten Kurs leider <b>beendet</b> werden.';
+      return;
+    }
+
+    // FES (Step 2)
+    if(idx === 2){
+      alertBox.style.display = "block";
+      alertTitle.textContent = "⚠️ Wichtig (Punkteabbau)";
+      alertText.innerHTML =
+        'Punkteabbau per FES ist nur bis <b>max. 5 Punkte</b> möglich.<br>' +
+        'Ab <b>6–7 Punkten</b> ist <b>kein Abbau</b> mehr möglich.';
+      return;
+    }
+
+    // Entzug (Step 3)
+    if(idx === 3){
+      alertBox.style.display = "block";
+      alertTitle.textContent = "⛔ Achtung";
+      alertText.innerHTML =
+        'Bei <b>8 Punkten</b> wird die Fahrerlaubnis <b>entzogen</b>.<br>' +
+        'Tipp: Früh reagieren – bei <b>4–5</b> ist FES (Punkteabbau) noch möglich.';
+      return;
+    }
+
+    // Default aus
+    alertBox.style.display = "none";
+    alertText.textContent = "";
+  }
+
+  function setActive(idx, userAction){
+    // Vorwärts → Blitzer flash + Wobble
+    if(userAction && idx > currentIndex){
+      flashCam(currentIndex);
+    }
+
+    currentIndex = idx;
+
+    markButtons(idx);
+    updateStops(idx);
+    setPct(idx);
+    setInfo(idx);
+
+    revealWikiUpTo(idx);
+    openCurrentWiki(idx);
+    updateWikiStatus(idx);
+
+    setCamDoneUpTo(idx);
+
+    updateZone(idx);
+    updateBonusAlert(idx);
+
+    if(idx === lastIndex) showToast();
+
+    if(pointsWrap && pointsWrap.scrollWidth > pointsWrap.clientWidth){
+      points[idx].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    }
+  }
+
+  // Skala Klicks -> Bubble
+  if(scaleSegs.length){
+    scaleSegs.forEach(function(seg){
+      seg.addEventListener('click', function(e){
+        e.stopPropagation();
+        var key = seg.getAttribute('data-key');
+        showMini(key);
+      });
+    });
+
+    document.addEventListener('click', function(){ hideMini(); });
+    if(miniPop){
+      miniPop.addEventListener('click', function(e){ e.stopPropagation(); });
+    }
+  }
+
+  // Steps Klick
+  points.forEach(function(p,i){
+    p.addEventListener('click', function(){ setActive(i, true); });
+  });
+
+  // Accordion
+  accs.forEach(function(acc){
+    var btn = acc.querySelector('.rk-acc-btn');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      if(acc.classList.contains('rk-reveal') && !acc.classList.contains('show')) return;
+
+      accs.forEach(function(a){
+        var ic = a.querySelector('.rk-acc-ico');
+        var shouldOpen = (a === acc);
+        a.classList.toggle('open', shouldOpen);
+        if(ic) ic.textContent = shouldOpen ? '–' : '+';
+      });
+    });
+  });
+
+  // Init
+  buildStops();
+  buildCams();
+  revealWikiUpTo(0);
+  setActive(0, false);
+});
+</script>
